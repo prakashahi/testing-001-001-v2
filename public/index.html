@@ -5,9 +5,37 @@
 </head>
 <body>
   <h1>Upload a Text File</h1>
-  <form action="/api/upload" method="POST" enctype="multipart/form-data">
+  <form id="upload-form">
     <input type="file" name="textFile" accept=".txt" />
     <button type="submit">Upload</button>
   </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('upload-form');
+    
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        try {
+        const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            alert('File uploaded and content saved to MongoDB Atlas.');
+        } else {
+            alert('Error uploading file.');
+        }
+        } catch (error) {
+            alert('An error occurred while uploading the file.');
+            console.error(error);
+        }
+    });
+    });
+
+  </script>
 </body>
 </html>
