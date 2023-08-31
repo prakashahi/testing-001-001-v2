@@ -7,13 +7,14 @@ const app = express();
 const port = 8080;
 
 app.use(express.static('public'))
+app.use(express.json())
 
 app.get("/", (req, res) => {
     res.sendFile("index.html");
 })
 
-app.get('/scrape', async (req, res) => {
-  const url = req.query.url;
+app.post('/scrape', async (req, res) => {
+  const url = req.body.url;
     console.log("hello")
   try {
     const response = await axios.get(url);

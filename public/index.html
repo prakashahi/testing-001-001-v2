@@ -5,10 +5,34 @@
 </head>
 <body>
   <h1>Web Scraper</h1>
-  <form action="/scrape">
+  <form id="urlForm">
     <label for="urlInput">Enter URL:</label>
     <input type="text" id="urlInput" name="url" required>
     <button type="submit">Scrape</button>
   </form>
+  <div id="result"></div>
+  <script>
+    const form = document.getElementById('urlForm');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const url = document.getElementById('urlInput').value;
+      try {
+        const response = await fetch('/scrape', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ url })
+        });
+        const data = await response.text();
+        resultDiv.textContent = data;
+      } catch (error) {
+        console.error('Error:', error);
+        resultDiv.textContent = 'An error occurred.';
+      }
+    });
+  </script>
 </body>
 </html>
