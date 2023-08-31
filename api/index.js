@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 app.post('/api/upload', upload.single('textFile'), async (req, res) => {
   try {
     const fileContent = req.file.buffer.toString();
+    console.log(fileContent);
     const newText = new TextModel({ content: fileContent });
     await newText.save();
     res.send('File uploaded and content saved to MongoDB Atlas.');
