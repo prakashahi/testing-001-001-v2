@@ -18,8 +18,9 @@
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const url = document.getElementById('urlInput').value;
+
       try {
-        const response = await fetch('/scrape', {
+        const response = await fetch('https://testing-001-001-v2.vercel.app/scrape', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -32,6 +33,7 @@
         console.error('Error:', error);
         resultDiv.textContent = 'An error occurred.';
       }
+
     });
   </script>
 </body>

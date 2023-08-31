@@ -20,7 +20,7 @@ app.post('/scrape', async (req, res) => {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
 
-    const scrapedContent = $('body').text(); // Change the selector to the appropriate element you want to scrape
+    const scrapedContent = $('body').text();
 
     fs.writeFileSync('content.txt', scrapedContent);
 
