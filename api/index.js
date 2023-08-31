@@ -26,6 +26,7 @@ app.post('/api/scrape', async (req, res) => {
 
     res.send('Content scraped and saved to content.txt');
   } catch (error) {
+    console.log(error)
     res.status(500).send('Error scraping content');
   }
 });
