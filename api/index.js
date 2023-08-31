@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require('express');
 const multer = require('multer');
-const mongoose = require('mongoose');
 const TextModel = require("../model/test");
 
 const app = express();
@@ -27,7 +26,7 @@ app.post('/api/upload', upload.single('textFile'), async (req, res) => {
   }
 });
 
-module.export = app;
+module.exports = app;
 
 // Start the server
 // app.listen(port, () => {
