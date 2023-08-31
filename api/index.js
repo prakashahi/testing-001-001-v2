@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
     res.sendFile("index.html");
 })
 
-app.post('/scrape', async (req, res) => {
+app.post('/api/scrape', async (req, res) => {
   const url = req.body.url;
     console.log("hello")
   try {
